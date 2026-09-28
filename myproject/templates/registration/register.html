@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Register - Dev-Chatter
+{% endblock %}
+
+{% block content %}
+
+<style>
+    html, body {
+        min-height: 100%;
+    }
+
+    .register-page {
+        min-height: 100vh;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 15px;
+    }
+
+    /* Full screen background */
+    .register-page::before {
+        content: "";
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        background: rgba(13, 110, 253, 0.25);
+        border-radius: 50%;
+        filter: blur(120px);
+        top: -150px;
+        left: -150px;
+        z-index: 0;
+    }
+
+    .register-page::after {
+        content: "";
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        background: rgba(111, 66, 193, 0.25);
+        border-radius: 50%;
+        filter: blur(120px);
+        bottom: -150px;
+        right: -150px;
+        z-index: 0;
+    }
+
+    .register-card {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 500px;
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 20px;
+        background: rgba(33,37,41,0.90);
+        backdrop-filter: blur(15px);
+    }
+
+    .register-card label {
+        color: #f1f3f5;
+        font-weight: 500;
+    }
+
+    .register-card input {
+        background: #343a40;
+        color: white;
+        border: 1px solid #6c757d;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .register-card input:focus {
+        background: #343a40;
+        color: white;
+        border-color: #0d6efd;
+        box-shadow: 0 0 10px rgba(13,110,253,0.3);
+    }
+
+    .register-card .helptext,
+    .register-card ul {
+        color: #adb5bd;
+        font-size: 13px;
+    }
+</style>
+
+<div class="register-page">
+
+    <div class="card shadow-lg register-card">
+
+        <div class="card-body p-4 p-md-5">
+
+            <h2 class="text-center fw-bold">
+                Create Account 🚀
+            </h2>
+
+            <p class="text-center text-secondary mb-4">
+                Join the Dev-Chatter community
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit"
+                        class="btn btn-primary w-100">
+                    Register
+                </button>
+            </form>
+
+            <p class="text-center mt-4 mb-0">
+                Already have an account?
+                <a href="{% url 'login' %}">
+                    Login
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

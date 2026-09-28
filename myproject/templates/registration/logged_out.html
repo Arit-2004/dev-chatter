@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Logged Out - Dev-Chatter
+{% endblock %}
+
+{% block content %}
+
+<style>
+    html, body {
+        min-height: 100%;
+    }
+
+    .logout-page {
+        min-height: 100vh;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 15px;
+    }
+
+    /* Full screen background */
+    .logout-page::before {
+        content: "";
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        background: rgba(13, 110, 253, 0.25);
+        border-radius: 50%;
+        filter: blur(120px);
+        top: -150px;
+        left: -150px;
+        z-index: 0;
+    }
+
+    .logout-page::after {
+        content: "";
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        background: rgba(111, 66, 193, 0.25);
+        border-radius: 50%;
+        filter: blur(120px);
+        bottom: -150px;
+        right: -150px;
+        z-index: 0;
+    }
+
+    .logout-card {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 450px;
+        border-radius: 20px;
+        background: rgba(33, 37, 41, 0.90);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .logout-icon {
+        font-size: 55px;
+    }
+</style>
+
+<div class="logout-page">
+
+    <div class="card shadow-lg logout-card">
+
+        <div class="card-body p-4 p-md-5 text-center">
+
+            <div class="logout-icon">
+                👋
+            </div>
+
+            <h2 class="fw-bold mt-3">
+                Logged Out
+            </h2>
+
+            <p class="text-secondary">
+                You have been successfully logged out.
+            </p>
+
+            <p class="mt-4">
+                Want to come back?
+            </p>
+
+            <a href="{% url 'login' %}"
+               class="btn btn-primary w-100 mb-2">
+                Login Again
+            </a>
+
+            <a href="{% url 'register' %}"
+               class="btn btn-outline-light w-100">
+                Create Account
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

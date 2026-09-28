@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Dev-Chatter
+{% endblock %}
+
+{% block content %}
+
+<style>
+    html, body {
+        min-height: 100%;
+    }
+
+    .tweet-page {
+        min-height: 100vh;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 15px;
+    }
+
+    /* Full screen background */
+    .tweet-page::before {
+        content: "";
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        background: rgba(255, 193, 7, 0.20);
+        border-radius: 50%;
+        filter: blur(120px);
+        top: -150px;
+        left: -150px;
+        z-index: 0;
+    }
+
+    .tweet-page::after {
+        content: "";
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        background: rgba(13, 110, 253, 0.25);
+        border-radius: 50%;
+        filter: blur(120px);
+        bottom: -150px;
+        right: -150px;
+        z-index: 0;
+    }
+
+    .tweet-card {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 600px;
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 20px;
+        background: rgba(33,37,41,0.90);
+        backdrop-filter: blur(15px);
+    }
+
+    .tweet-card label {
+        color: #f1f3f5;
+        font-weight: 500;
+    }
+
+    .tweet-card input,
+    .tweet-card textarea {
+        background: #343a40;
+        color: white;
+        border: 1px solid #6c757d;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .tweet-card textarea {
+        min-height: 130px;
+    }
+
+    .tweet-card input:focus,
+    .tweet-card textarea:focus {
+        background: #343a40;
+        color: white;
+        border-color: #ffc107;
+        box-shadow: 0 0 10px rgba(255,193,7,0.3);
+    }
+
+    .home-link {
+        text-decoration: none;
+    }
+</style>
+
+<div class="tweet-page">
+
+    <div class="card shadow-lg tweet-card">
+
+        <div class="card-body p-4 p-md-5">
+
+            <h1 class="text-center fw-bold mb-2">
+                Dev-Chatter 💬
+            </h1>
+
+            <h4 class="text-center text-warning mb-4">
+
+                {% if form.instance.pk %}
+                    Edit Tweet ✏️
+                {% else %}
+                    Create Tweet 📝
+                {% endif %}
+
+            </h4>
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit"
+                        class="btn btn-warning w-100">
+                    
+                    {% if form.instance.pk %}
+                        Update Tweet
+                    {% else %}
+                        Post Tweet
+                    {% endif %}
+
+                </button>
+
+            </form>
+
+            <div class="text-center mt-4">
+
+                <a href="{% url 'index' %}" class="home-link">
+                    ← Go to Homepage
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
