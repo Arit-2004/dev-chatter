@@ -13,9 +13,7 @@
     </title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-          crossorigin="anonymous">
+          rel="stylesheet">
 </head>
 
 <body class="bg-dark text-light text-center">
@@ -44,11 +42,11 @@
             <!-- Navbar Content -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                <!-- Navigation Links -->
+                <!-- Navigation -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item">
-                        <a class="nav-link active"
+                        <a class="nav-link"
                            href="{% url 'index' %}">
                             Home
                         </a>
@@ -63,12 +61,12 @@
                 </ul>
 
                 <!-- Search -->
-                <form class="d-flex mb-2 mb-lg-0"
+                <form class="d-flex flex-column flex-lg-row mb-2 mb-lg-0"
                       role="search"
                       method="GET"
                       action="{% url 'index' %}">
 
-                    <input class="form-control me-2"
+                    <input class="form-control me-lg-2 mb-2 mb-lg-0"
                            type="search"
                            name="q"
                            placeholder="Search"
@@ -81,43 +79,48 @@
 
                 </form>
 
-                <!-- Create Tweet -->
-                <a class="btn btn-primary mx-lg-2 my-2 my-lg-0"
-                   href="{% url 'tweet_create' %}">
-                    Create a Tweet
-                </a>
+                <!-- Buttons -->
+                <div class="d-flex flex-column flex-lg-row gap-2 mt-2 mt-lg-0 ms-lg-2">
 
-                {% if user.is_authenticated %}
-
-                    <!-- Logout -->
-                    <form method="POST"
-                          action="{% url 'logout' %}"
-                          class="my-2 my-lg-0">
-
-                        {% csrf_token %}
-
-                        <button class="btn btn-danger mx-lg-2"
-                                type="submit">
-                            Logout
-                        </button>
-
-                    </form>
-
-                {% else %}
-
-                    <!-- Register -->
-                    <a class="btn btn-primary mx-lg-2 my-2 my-lg-0"
-                       href="{% url 'register' %}">
-                        Register
+                    <!-- Create Tweet -->
+                    <a class="btn btn-primary"
+                       href="{% url 'tweet_create' %}">
+                        Create a Tweet
                     </a>
 
-                    <!-- Login -->
-                    <a class="btn btn-success mx-lg-2 my-2 my-lg-0"
-                       href="{% url 'login' %}">
-                        Login
-                    </a>
+                    {% if user.is_authenticated %}
 
-                {% endif %}
+                        <!-- Logout -->
+                        <form method="POST"
+                              action="{% url 'logout' %}"
+                              class="m-0">
+
+                            {% csrf_token %}
+
+                            <button class="btn btn-danger w-100"
+                                    type="submit">
+                                Logout
+                            </button>
+
+                        </form>
+
+                    {% else %}
+
+                        <!-- Register -->
+                        <a class="btn btn-primary"
+                           href="{% url 'register' %}">
+                            Register
+                        </a>
+
+                        <!-- Login -->
+                        <a class="btn btn-success"
+                           href="{% url 'login' %}">
+                            Login
+                        </a>
+
+                    {% endif %}
+
+                </div>
 
             </div>
         </div>
@@ -133,5 +136,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
+
