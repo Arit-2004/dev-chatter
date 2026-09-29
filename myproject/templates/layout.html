@@ -82,7 +82,7 @@
 
                 <!-- Create Tweet -->
                 <a class="btn btn-primary mx-lg-2 my-2 my-lg-0"
-                   href="{% url 'tweet_create' %}">
+                   href="{% url 'tweet_form' %}">
                     Create a Tweet
                 </a>
 
@@ -90,7 +90,7 @@
 
                     <!-- Logout -->
                     <form method="POST"
-                          action="{% url 'logout' %}"
+                          action="{% url 'logged_out' %}"
                           class="my-2 my-lg-0">
 
                         {% csrf_token %}
@@ -129,7 +129,9 @@
     </div>
 
     <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYZq7K8+4hW7Vv4l5L4t2E5G5p"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
