@@ -110,9 +110,6 @@ DATABASES = {
     }
 }
 
-print("=== DATABASE DEBUG ===")
-print("DB ENGINE:", DATABASES["default"]["ENGINE"])
-print("DB HOST:", DATABASES["default"]["HOST"])
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
