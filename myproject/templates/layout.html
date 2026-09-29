@@ -1,56 +1,136 @@
-{%load static%}
+```html
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>
-    {% block title %}
-       Tweeter clone
-    {% endblock %}
+        {% block title %}
+            Tweeter clone
+        {% endblock %}
     </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  </head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
 </head>
+
 <body class="bg-dark text-light text-center">
+
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">DevChatter</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-         <a class="nav-link active" href="{% url 'index' %}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search" method="GET" {% url "index" %}>
-        <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-      <a class="btn btn-primary mx-2" href="{% url "tweet_create" %}" >Create a Tweet</a>
-      {% if user.is_authenticated %}
-      <form method="POST" action={% url "logout" %}>
-        {% csrf_token %}
-        <button class="btn btn-danger mx-2" type="submit">Logout</button>
-      </form>
-      {% else %}
-        <a class="btn btn-primary mx-2"href={% url "register" %}>Register</a>
-        <a class="btn btn-success mx-2"href={% url "login" %}>Login</a></p>
-      {% endif %}
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="{% url 'index' %}">
+                DevChatter
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           href="{% url 'index' %}">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            About
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- Search -->
+                <form class="d-flex mb-2 mb-lg-0"
+                      role="search"
+                      method="GET"
+                      action="{% url 'index' %}">
+
+                    <input class="form-control me-2"
+                           type="search"
+                           name="q"
+                           placeholder="Search"
+                           aria-label="Search">
+
+                    <button class="btn btn-outline-success"
+                            type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+                <!-- Create Tweet -->
+                <a class="btn btn-primary mx-lg-2 my-2 my-lg-0"
+                   href="{% url 'tweet_create' %}">
+                    Create a Tweet
+                </a>
+
+                {% if user.is_authenticated %}
+
+                    <!-- Logout -->
+                    <form method="POST"
+                          action="{% url 'logout' %}"
+                          class="my-2 my-lg-0">
+
+                        {% csrf_token %}
+
+                        <button class="btn btn-danger mx-lg-2"
+                                type="submit">
+                            Logout
+                        </button>
+
+                    </form>
+
+                {% else %}
+
+                    <!-- Register -->
+                    <a class="btn btn-primary mx-lg-2 my-2 my-lg-0"
+                       href="{% url 'register' %}">
+                        Register
+                    </a>
+
+                    <!-- Login -->
+                    <a class="btn btn-success mx-lg-2 my-2 my-lg-0"
+                       href="{% url 'login' %}">
+                        Login
+                    </a>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
     </div>
-  </div>
-</nav>
-   <div class="container"> 
-     {% block content %}
-     {% endblock %}
-   </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
+```
