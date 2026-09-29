@@ -12,7 +12,7 @@ Dev-Chatter
     }
 
     .tweet-page {
-        min-height: 100vh;
+        min-height: calc(100vh - 70px);
         width: 100%;
         position: relative;
         overflow: hidden;
@@ -22,7 +22,7 @@ Dev-Chatter
         padding: 40px 15px;
     }
 
-    /* Full screen background */
+    /* Background */
     .tweet-page::before {
         content: "";
         position: fixed;
@@ -49,6 +49,7 @@ Dev-Chatter
         z-index: 0;
     }
 
+    /* Tweet Card */
     .tweet-card {
         position: relative;
         z-index: 1;
@@ -60,34 +61,124 @@ Dev-Chatter
         backdrop-filter: blur(15px);
     }
 
+    /* Labels */
     .tweet-card label {
         color: #f1f3f5;
         font-weight: 500;
+        display: block;
+        margin-bottom: 6px;
     }
 
+    /* Inputs */
     .tweet-card input,
-    .tweet-card textarea {
+    .tweet-card textarea,
+    .tweet-card select {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
         background: #343a40;
         color: white;
         border: 1px solid #6c757d;
         border-radius: 8px;
-        padding: 10px;
+        padding: 12px;
+        font-size: 16px;
     }
 
+    /* Textarea */
     .tweet-card textarea {
-        min-height: 130px;
+        min-height: 150px;
+        resize: vertical;
     }
 
+    /* File input */
+    .tweet-card input[type="file"] {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    /* Focus */
     .tweet-card input:focus,
-    .tweet-card textarea:focus {
+    .tweet-card textarea:focus,
+    .tweet-card select:focus {
         background: #343a40;
         color: white;
         border-color: #ffc107;
         box-shadow: 0 0 10px rgba(255,193,7,0.3);
+        outline: none;
     }
 
+    /* Django form paragraphs */
+    .tweet-card p {
+        margin-bottom: 18px;
+        text-align: left;
+    }
+
+    /* Help text */
+    .tweet-card .helptext {
+        display: block;
+        color: #adb5bd;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    /* Error messages */
+    .tweet-card .errorlist {
+        color: #ff6b6b;
+        padding-left: 20px;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    /* Homepage link */
     .home-link {
         text-decoration: none;
+        color: #ffc107;
+    }
+
+    .home-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Mobile */
+    @media (max-width: 576px) {
+
+        .tweet-page {
+            min-height: calc(100vh - 60px);
+            padding: 25px 10px;
+            align-items: flex-start;
+        }
+
+        .tweet-card {
+            border-radius: 16px;
+        }
+
+        .tweet-card .card-body {
+            padding: 25px 18px !important;
+        }
+
+        .tweet-card h1 {
+            font-size: 26px;
+        }
+
+        .tweet-card h4 {
+            font-size: 20px;
+        }
+
+        .tweet-card input,
+        .tweet-card textarea,
+        .tweet-card select {
+            font-size: 16px;
+            padding: 11px;
+        }
+
+        .tweet-card textarea {
+            min-height: 140px;
+        }
+
+        .tweet-card .btn {
+            padding: 12px;
+            font-size: 16px;
+        }
     }
 </style>
 
@@ -119,7 +210,7 @@ Dev-Chatter
 
                 <button type="submit"
                         class="btn btn-warning w-100">
-                    
+
                     {% if form.instance.pk %}
                         Update Tweet
                     {% else %}
@@ -145,3 +236,5 @@ Dev-Chatter
 </div>
 
 {% endblock %}
+
+
